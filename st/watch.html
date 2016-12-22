@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue watch</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<p>Ask a question please:</p>
+	<input type="text" v-model="question">
+	<p>{{ answer }}</p>
+	<img v-bind:src="url" alt="">
+</div>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      question: '',
+      answer: 'I`m waiting for your question...',
+			url: ''
+    },
+    watch: {
+      question: function (newQ) {
+        this.answer = 'waitiong for you to stop typing...';
+        this.getAnswer();
+      }
+    },
+    methods: {
+      getAnswer: _.debounce(
+        function () {
+          let that = this;
+          if (that.question.indexOf('?') == '-1') {
+            that.answer = '这不是一个问题吧？';
+            that.url = '';
+            return;
+          }
+          that.answer = '思考中...';
+          axios.get('https://yesno.wtf/api')
+            .then(function (res) {
+              console.log(res);
+              that.answer = _.capitalize(res.data.answer);
+              that.url = _.capitalize(res.data.image);
+            })
+            .catch(function (err) {
+              that.answer = 'err' + err;
+            });
+
+				}, 500
+			)
+  	}
+  });
+</script>
+</body>
+</html>

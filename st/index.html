@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<p>{{ message }}</p>
+	<p>{{ reverseMsg }}</p>
+	<p>{{ now }}</p>
+	<div class="wrap">
+		<button type="button" @click="reverse">点击翻转字符串</button>
+		<a :href="url" target="_blank">mili</a>
+	</div>
+	<ol>
+		<todo-item v-for="item in lists" v-bind:todo="item"></todo-item>
+	</ol>
+	<ul>
+		<li v-for="i in als">{{ i.name }}</li>
+	</ul>
+
+	<div class="filter">
+		<ul>
+			<li v-for="f in fils">{{ f.name | format }}</li>
+		</ul>
+	</div>
+	<p>{{ firstName }}  {{ lastName }}</p>
+	<button @click="changeName"> 点击改变名字 </button>
+</div>
+
+
+<script>
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>this is a todo item {{ todo.text }}</li>'
+  });
+  const Com = Vue.extend({
+//    扩展选项
+	});
+  const com1 = new Com();
+  let als = [{
+    name: 'first'
+	}, {
+    name: 'second'
+	}, {
+    name: 'three'
+	}];
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello vue',
+      lists: [{
+        text: 'mili'
+      }, {
+        text: 'todo'
+      }],
+			url: 'https://github.com/milixie',
+			als: als,
+			fils: [{
+        name: 'Anda'
+			}, {
+        name: 'Linda'
+			}, {
+        name: 'Anna'
+			}, {
+        name: 'Bob'
+			}, {
+        name: 'Anday'
+			}, {
+        name: 'Bili'
+			}],
+			firstName: 'mili',
+			lastName: 'xie'
+    },
+		computed : {
+      reverseMsg: function () {
+				return this.message.split('').reverse().join('')
+      },
+			now: function () {
+				return Date.now()
+      },
+      fullName: {
+        get: function () {
+					return this.firstName + ' ' + this.lastName
+        },
+				set: function (newName) {
+					let name = newName.split(' ');
+					this.firstName = name[0];
+					this.lastName = name[name.length - 1]
+        }
+			}
+		},
+    methods: {
+      reverse: function () {
+        this.message = this.message.split('').reverse().join('')
+      },
+      changeName: function () {
+				vm.fullName = 'linda Chen'
+      }
+    },
+		filters: {
+      format: function (value) {
+				if (!value) return '';
+				if (value.charAt() === 'A') {
+				  return value;
+				}
+      }
+		}
+  })
+</script>
+</body>
+</html>
