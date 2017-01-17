@@ -52,4 +52,22 @@ const data = {
 ```
 Vue.component('my-message', {});
 ```
+组件中使用`slot`这个插口，才可以在组件使用的时候继续在组件中添加内容
+
+```
+Vue.component('my-com', {
+  template: '<div><p>标题</p><slot>这部分不会显示的，如果在组件中有内容会显示出来的，如果没有这个 slot 插入的话，你在组件中写的内容不会显示出来</slot></div>'
+});
+
+<div>
+  <my-com>
+    <p>这里是新建的内容，会显示出来的</p>
+  </my-com>
+</div>
+
+
+
+```
+
+
 
