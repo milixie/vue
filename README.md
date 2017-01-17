@@ -65,9 +65,35 @@ Vue.component('my-com', {
   </my-com>
 </div>
 
-
-
 ```
 
+多个slot 使用`name`这个属性去标识
+```
+ Vue.component('my-slot', {
+    template: `
+              <div>
+              <header>
+              <slot name="header">这里是标题</slot>
+              </header>
+              <div class="content">
+              <slot>默认的 slot </slot>
+              </div>
+              <footer>
+              <slot name="footer">这里是底部</slot>
+              </footer>
+              </div>
+`
+  });
+  
+//  使用
+  <my-slot>
+			<h1 slot="header">Title</h1>
+			<p>content 1</p>
+			<p>content 2</p>
+			<p>content 3</p>
+			<div slot="footer">bottom</div>
+		</my-slot>
+
+```
 
 
