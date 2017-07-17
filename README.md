@@ -102,7 +102,7 @@ Vue.component('my-com', {
 
 方法一：使用外部的状态管理模式：例如 vuex，通过 mutations 去更新状态值，实现通信
 
-方法二：使用 `$emit` and `$on` 去实现通信
+方法二：使用 `$emit` and `v-on` 去实现通信
 
 例如：
 ```
@@ -115,7 +115,7 @@ methods: {
   }
 }
 
-//这是父组件 app，使用 v-on 去接收处理
+//这是父组件 app，使用 v-on 去监听事件
 <test v-on:update="updateCurrentStatus">xxx</test>
 
 methods: {
@@ -125,6 +125,31 @@ methods: {
 }
 
 ```
+
+
+### 非父子组件之间的通信
+
+
+方法一：使用外部的状态管理模式：例如 vuex，通过 mutations 去更新状态值，实现通信
+
+方法二：使用一个空的 Vue 实例作为中央事件总线 `$emit` and `$on` 去实现通信
+
+```
+const foo = new Vue();
+
+//触发组件 A 中的事件
+foo.$emit('update', 1);
+
+//在组件 B 创建的钩子中监听事件
+foo.$on('update', (val) => {
+  console.log(val); // 1
+});
+
+```
+
+
+
+
 
 
 
