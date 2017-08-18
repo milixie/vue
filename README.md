@@ -187,6 +187,52 @@ Vue.use(plugin);
 import plugin from '../vue/plugin';
 Vue.use(plugin);
 
+- Vue.mixin(mixin) 
+全局混合（没理解清晰）
+
+- Vue.compile(template)
+在 render 函数中编译模板字符串(没理解清晰)
+
+Vue.version 
+vue 的版本号
+console.log(Vue.version);
+
+
+### 选项 | 数据
+
+- data:Vue 实例数据对象
+当一个组件被定义， data 必须声明为返回一个初始数据对象的函数，每次创建一个新实例后，能够调用 data 函数返回初始数据的一个全新副本数据对象
+
+可以通过 JSON.parse(JSON.stringify(vm.$data))将源数据进行深拷贝
+
+注意：
+==
+不应该对data 使用箭头函数，因为箭头函数绑定了父级作用域的上下文
+
+- props
+接收来自父组件的数据
+
+父组件中：
+<coupon :show="is_show"></coupon>
+
+子组件 coupon中
+props: ['show']
+
+- propsData (理解不清晰)
+只用于 new 创建的实例
+
+const vm = new Cm({
+    propsData: {msg: 'hhhh'}
+});
+
+- computed
+计算属性，计算的结果会被缓存，如果里面的值没有变化的话就不会重新计算，只有当里面的值动态变化的时候才会重新计算
+
+
+
+
+
+
 
 ```
 
