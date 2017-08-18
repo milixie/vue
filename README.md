@@ -144,6 +144,49 @@ Vue.component('componentName', options);
 Vue.nextTick([cb, context]);
 在 DOM 更新循环结束之后执行延迟回调，在更新数据之后使用这个方法，获取更新后的 DOM
 
+Vue.set(target, key, value);
+设置对象的属性
+const obj = {};
+Vue.set(obj, 'name', 'milixie');
+console.log(obj); // {name: 'milixie'}
+
+Vue.delete(target, key);
+删除对象的属性
+Vue.delete(obj, 'name');
+console.log(obj); //{}
+
+Vue.directive(id, [definition]);
+注册或者获取全局指令
+Vue.directive('power', function() {
+  bind: function(){
+    console.log('test directive')
+  },
+  inserted: function () {},
+  update: function () {},
+  componentUpdated: function () {},
+  unbind: function () {}
+});
+
+返回已经注册的指令
+const my_power = Vue.directive('power');
+
+在页面中
+<div v-power></div>
+在控制台会打印出 test directive
+
+Vue.filter(id, [definition]);
+注册或者获取全局过滤器
+Vue.filter('cash', function(value){
+  return (value/100).toFixed(2);
+});
+使用：
+<div>{{price | cash}}</div>
+
+Vue.use(plugin);
+使用插件
+import plugin from '../vue/plugin';
+Vue.use(plugin);
+
 
 ```
 
