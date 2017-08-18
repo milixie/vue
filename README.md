@@ -126,9 +126,26 @@ methods: {
 
 ```
 
+### vue全局配置
+
+```
+vue.config
+```
+
+### 全局 API
+
+```
+Vue.extend(options);
+是一个类继承方法，用来生成一个 Vue 的子类构造函数
+
+Vue.component('componentName', options);
+注册组件的方法，在传递 options 的时候，它会在内部调用 Vue.extend()
+
+Vue.nextTick([cb, context]);
+在 DOM 更新循环结束之后执行延迟回调，在更新数据之后使用这个方法，获取更新后的 DOM
 
 
-
+```
 
 
 
