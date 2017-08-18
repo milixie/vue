@@ -1,8 +1,5 @@
-vue 学习
+vue 学习笔记
 =======
-# vue-pro1
-
-> A Vue.js project
 
 ## Build Setup
 
