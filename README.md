@@ -243,7 +243,7 @@ watch: {
 
 ```
 
-### 选项|DOM
+### 选项 | DOM
 
 ```
 el:
@@ -252,6 +252,10 @@ el:
 template | render | renderError
 
 ```
+
+### 选项 | 生命周期
+
+[生命周期图](https://cn.vuejs.org/images/lifecycle.png）
 
 
 
