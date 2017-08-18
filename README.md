@@ -257,6 +257,22 @@ template | render | renderError
 
 ![生命周期图](https://cn.vuejs.org/images/lifecycle.png)
 
+### 指令
+大部分指令在工作中经常用到，以下的我没怎么用过
+
+```
+v-pre: 
+不编译
+<span>{{msg}}本身不编译</span>
+页面直接显示：{{msg}}本身不编译
+
+v-cloak:这个指令保持在元素上直到关联实例结束编译(理解不清晰)
+
+v-once: 
+编译一次，后面如果 msg 更新，页面也不会重新编译更新
+用处：可以用于代码优化
+```
+
 
 
 
