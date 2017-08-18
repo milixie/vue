@@ -197,8 +197,10 @@ Vue.version
 vue 的版本号
 console.log(Vue.version);
 
+```
 
 ### 选项 | 数据
+```
 
 - data:Vue 实例数据对象
 当一个组件被定义， data 必须声明为返回一个初始数据对象的函数，每次创建一个新实例后，能够调用 data 函数返回初始数据的一个全新副本数据对象
@@ -228,13 +230,39 @@ const vm = new Cm({
 - computed
 计算属性，计算的结果会被缓存，如果里面的值没有变化的话就不会重新计算，只有当里面的值动态变化的时候才会重新计算
 
+- methods
+方法，不可以使用箭头函数，理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例
 
-
-
-
-
+- watch
+一个对象，键是需要观察的表达式，值是对应的回调
+watch: {
+  length(){
+    len = this.list.length;
+  }
+}
 
 ```
+
+### 选项|DOM
+
+```
+el:
+在实例挂载vm.$mount()后可以访问，vm.$el
+
+template | render | renderError
+
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
